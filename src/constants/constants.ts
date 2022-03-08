@@ -1,4 +1,4 @@
-import { IUFName } from 'interfaces/IStates';
+import { IUFName } from '../interfaces/IStates';
 
 export const IBGE_URL =
   'https://servicodados.ibge.gov.br/api/v1/localidades/estados';
