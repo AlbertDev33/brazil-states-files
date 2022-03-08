@@ -22,7 +22,8 @@ São 4 scripts com funções semelhantes. Todos geram ou um único arquivo com t
 
 # Árvore de arquivos e pastas
 
-`📦brasilStatesFiles
+```
+📦brasilStatesFiles
  ┣ 📂src
  ┃ ┣ 📂Constants
  ┃ ┃ ┗ 📜constants.ts
@@ -40,4 +41,4 @@ São 4 scripts com funções semelhantes. Todos geram ou um único arquivo com t
  ┣ 📜package.json
  ┣ 📜tsconfig.json
  ┗ 📜yarn.lock
- `
+ ```
