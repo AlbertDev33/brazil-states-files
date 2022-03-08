@@ -6,6 +6,7 @@ São 4 scripts com funções semelhantes. Todos geram ou um único arquivo com t
 # Motivação
 - Nos casos em que é necessário preencher algum formulário de forma automática ou disponibilizar as informações dos estados e cidades brasileiros, uma boa alternativa é gera arquivos com esse conteúdo, visto que são informações com pouca alteração. Isso gera mais performance para sua aplicação, não sendo necessário gera uma chamada para uma API externa e esperar que seja resolvido. Os arquivos estáticos garantem muito mais performance para sua aplicação.
 
+# Função de cada script
 - O script do arquivo asyncStateFile.ts cria um arquivo para cada estado brasileiro e suas cidades e no final gera um único arquivo com todos os estados e suas cidades. Todos os arquivo são criados no formato .ts. A tarefa nesse script é feita através de chamadas assíncronas e stream's
 
 - O script do arquivo statesFilesJson.ts gera um arquivo JSON para cada estado brasileiro e suas respectivas cidades. Toda a operação de escrita dos arquivos é feita utilizando stream's. A tarefa é feita de forma extremamente performática.
