@@ -8,7 +8,7 @@ const fetchStates = async (url: string): Promise<IAxiosShape[]> => {
   return data;
 };
 
-async function states(): Promise<void> {
+export async function states(): Promise<void> {
   let length = Object.keys(UF).length - 1;
   const keys = Object.keys(UF);
   const promise = [];
@@ -48,7 +48,3 @@ async function states(): Promise<void> {
     return acc;
   }, {} as ICityName);
 }
-
-states()
-  .then(() => console.log('Done'))
-  .catch(err => console.log(err));

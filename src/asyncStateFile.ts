@@ -6,7 +6,7 @@ import { IStatesShape, ICityName } from './interfaces/IStates';
 
 const writeFile = promisify(fs.writeFile);
 
-async function states() {
+export async function states() {
   let length = Object.keys(UF).length - 1;
   const keys = Object.keys(UF);
   const newState = {} as ICityName;
@@ -41,7 +41,3 @@ async function states() {
     fileState.pipe(fs.createWriteStream('States.ts'));
   }
 }
-
-states()
-  .then(() => console.log('Done'))
-  .catch(err => console.log(err));

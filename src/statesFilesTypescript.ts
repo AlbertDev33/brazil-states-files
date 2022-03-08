@@ -8,7 +8,7 @@ const fetchStates = async (url: string) => {
   return data;
 };
 
-async function states() {
+export async function states() {
   let length = Object.keys(UF).length - 1;
   const keys = Object.keys(UF);
 
@@ -44,7 +44,3 @@ async function states() {
     length -= 1;
   }
 }
-
-states()
-  .then(() => console.log('Done'))
-  .catch(err => console.log(err));
