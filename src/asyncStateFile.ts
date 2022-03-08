@@ -1,7 +1,7 @@
 import axios from 'axios';
 import fs from 'fs';
 import { promisify } from 'util';
-import { IBGE_URL, UF } from './Constants/constants';
+import { IBGE_URL, UF } from './constants/constants';
 import { IStatesShape, ICityName } from './interfaces/IStates';
 
 const writeFile = promisify(fs.writeFile);

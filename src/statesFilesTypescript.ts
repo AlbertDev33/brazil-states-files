@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { createWriteStream } from 'fs';
-import { IBGE_URL, UF } from './Constants/constants';
+import { IBGE_URL, UF } from './constants/constants';
 import { ICityShape, ICityName, IStatesShape } from './interfaces/IStates';
 
 const fetchStates = async (url: string) => {
