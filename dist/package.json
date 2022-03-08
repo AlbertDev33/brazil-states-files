@@ -8,8 +8,7 @@
         "main": "dist/src/index.js"
     },
     "dependencies": {
-        "axios": "^0.26.0",
-        "node": "^17.5.0"
+        "axios": "^0.26.0"
     },
     "devDependencies": {
         "@types/node": "^17.0.21",
