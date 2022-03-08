@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "main": "dist/src/index.js"
+  },
   "dependencies": {
     "axios": "^0.26.0"
   },
