@@ -8,7 +8,7 @@ const fetchStates = async (url: string): Promise<IAxiosShape[]> => {
   return data;
 };
 
-export async function states(): Promise<void> {
+export async function uniqueStateFile(): Promise<void> {
   let length = Object.keys(UF).length - 1;
   const keys = Object.keys(UF);
   const promise = [];

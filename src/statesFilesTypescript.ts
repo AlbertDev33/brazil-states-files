@@ -8,7 +8,7 @@ const fetchStates = async (url: string) => {
   return data;
 };
 
-export async function states() {
+export async function statesFilesTypescript() {
   let length = Object.keys(UF).length - 1;
   const keys = Object.keys(UF);
 

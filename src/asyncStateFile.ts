@@ -6,7 +6,7 @@ import { IStatesShape, ICityName } from './interfaces/IStates';
 
 const writeFile = promisify(fs.writeFile);
 
-export async function states() {
+export async function asyncStateFiles() {
   let length = Object.keys(UF).length - 1;
   const keys = Object.keys(UF);
   const newState = {} as ICityName;
