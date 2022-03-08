@@ -1,5 +1,5 @@
 # BrazilStatesFile
-Scripts para gerar arquivos dos estados e cidades Brasileiras
+Scripts para gerar arquivos dos estados e cidades brasileiras
 
 São 4 scripts com funções semelhantes. Todos geram ou um único arquivo com todos os estados brasileiros ou um arquivo para cada estado brasileiro.
 
