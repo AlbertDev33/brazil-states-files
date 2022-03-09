@@ -20,7 +20,6 @@
         "prettier"
     ],
     "rules": {
-        "no-await-in-loop": "off",
         "prettier/prettier": "error",
         "import/prefer-default-export": "off",
         "import/extensions": [
