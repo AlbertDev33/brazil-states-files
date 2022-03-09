@@ -1,24 +1,35 @@
 # BrazilStatesFile
-Scripts para gerar arquivos dos estados e cidades brasileiras
+Pacote para gerar arquivos dos estados e cidades brasileiras
 
-São 4 scripts com funções semelhantes. Todos geram ou um único arquivo com todos os estados brasileiros ou um arquivo para cada estado brasileiro.
+São 4 funções que geram ou um único arquivo com todos os estados brasileiros ou um arquivo para cada estado do Brasil.
 
-# Motivação
-- Nos casos em que é necessário preencher algum formulário de forma automática ou disponibilizar as informações dos estados e cidades brasileiros, uma boa alternativa é gerar arquivos com esse conteúdo, visto que são informações com pouca alteração. Isso gera mais performance para sua aplicação, não sendo necessário realizar uma chamada para uma API externa e esperar que seja resolvido. Os arquivos estáticos garantem muito mais performance para sua aplicação.
+# Caso de uso
+- Nos casos em que é necessário preencher algum formulário de forma automática ou disponibilizar as informações dos estados e cidades brasileiros em sua aplicação, uma boa alternativa é gerar arquivos com esse conteúdo, visto que são informações que tendem a serem alteradas poucas vezes durante anos. 
+Isso gera mais performance para sua aplicação, não sendo necessário realizar uma chamada para uma API externa e esperar que essa seja resolvida toda vez que seu usuário precisar dessas informações. Os arquivos estáticos garantem muito mais performance para sua aplicação.
 
-# Função de cada script
-- O script do arquivo asyncStateFile.ts cria um arquivo para cada estado brasileiro e suas cidades e no final gera um único arquivo com todos os estados e suas cidades. Todos os arquivo são criados no formato .ts. A tarefa nesse script é feita através de chamadas assíncronas e stream's
+# Descrição de cada função desse pacote
+- A função asyncStateFile cria um arquivo para cada estado brasileiro e suas cidades. Todos os arquivo são criados no formato .ts por padão, entretanto, é possível escolher entre os formatos '.ts' e '.js'. São utilizadas chamadas assíncronas para criar os arquivos de cada estado.
 
-- O script do arquivo statesFilesJson.ts gera um arquivo JSON para cada estado brasileiro e suas respectivas cidades. Toda a operação de escrita dos arquivos é feita utilizando stream's. A tarefa é feita de forma extremamente performática.
+- A função statesFilesJson gera um arquivo JSON para cada estado brasileiro e suas respectivas cidades. Toda a operação de escrita dos arquivos é feita utilizando stream's. A tarefa é feita de forma extremamente performática.
 
-- O script do arquivo statesFilesTypescript gera a mesma saída do arquivo statesFilesJson.ts, porém, os arquivos são no formato JSON.
+- A função statesFilesTypescript gera a mesma saída da função statesFilesJson, porém, os arquivos são no formato .ts.
 
-- O script do arquivo uniqueStateFile.ts gera um único arquivo contendo todoas os estados e suas respectivas cidades. Toda a tarefa de escrita é realizada utilizando stream's. A operação é feita de forma extremamente perfomática.
+- A função uniqueStateFile gera um único arquivo contendo todos os estados brasileiros e suas respectivas cidades no formato '.json'. Toda a tarefa de escrita é realizada utilizando stream's. A operação é feita de forma extremamente perfomática.
 
-# Como utilizar os scripts
-- Para executar os scripts é necessário que o Node.js esteja instalado em sua máquina;
-- Abra o projeto e em seu terminal execute o comando yarn ou npm install para instalar as dependências;
-- Esse projeto foi desenvolvido em Typescript, por isso é necessário executar o script desejado utilizando ts-node (já instalado no passo anterior). Por exemplo yarn ts-node uniqueStatesFile.ts.
+# Como utilizar cada função
+- Instale o pacote em seu projeto executando o comando yarn add brazil-states-files ou npm install brazil-states-files;
+- Importe a função desejada;
+- É importante que todas as funções sejam encapsuladas em uma chamada assíncrona. As funções não aceitam um callback como parâmetro.
+
+# Exemplo
+```ts
+    import { statesFilesJson } from 'brazil-states-files';
+
+    const states = async () => {
+        // will create state files in root folder
+        await statesFilesJson();
+    }
+```
 
 # Árvore de arquivos e pastas
 
