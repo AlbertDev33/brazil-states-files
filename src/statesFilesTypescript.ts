@@ -58,7 +58,3 @@ export async function statesFilesTypescript() {
     return acc;
   }, {} as ICityName);
 }
-
-statesFilesTypescript()
-  .then(() => console.log('Done'))
-  .catch(err => console.error(err));
