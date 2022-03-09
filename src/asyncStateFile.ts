@@ -2,11 +2,16 @@ import axios from 'axios';
 import fs from 'fs';
 import { promisify } from 'util';
 import { IBGE_URL, UF } from './constants/constants';
-import { IStatesShape, ICityName } from './interfaces/IStates';
+import { ICityName, IAxiosShape } from './interfaces/IStates';
 
 const writeFile = promisify(fs.writeFile);
 
+const fetchStates = async (url: string): Promise<IAxiosShape[]> => {
+  const { data } = await axios.get<IAxiosShape[]>(url);
+  return data;
+};
 export async function asyncStateFiles() {
+  const promise = [];
   let length = Object.keys(UF).length - 1;
   const keys = Object.keys(UF);
   const newState = {} as ICityName;
@@ -14,30 +19,38 @@ export async function asyncStateFiles() {
   while (length !== -1) {
     const uf = keys[length];
     const url = `${IBGE_URL}/${uf}/municipios`;
-    const { data } = await axios.get<IStatesShape[]>(url);
+    promise.push(fetchStates(url));
+    length -= 1;
+  }
 
-    data.map(async state => {
-      const stateName = state.microrregiao.mesorregiao.UF.nome;
+  const data = await Promise.all<IAxiosShape[]>(promise);
+
+  data.map(async state => {
+    state.forEach(async region => {
+      const stateName = region.microrregiao.mesorregiao.UF.nome;
       const citiesName = newState[stateName];
 
       if (citiesName) {
-        citiesName.push({ city: state.nome });
+        citiesName.push({ city: region.nome });
       } else {
-        newState[stateName] = [{ city: state.nome }];
+        newState[stateName] = [{ city: region.nome }];
       }
       const parseCities = JSON.stringify(newState[stateName]);
       const trimStateName = stateName.replaceAll(' ', '');
+      const treatStateName = stateName
+        .replaceAll(' ', '')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '');
+
       await writeFile(
         `${trimStateName}.ts`,
         JSON.parse(
-          JSON.stringify(`export const ${trimStateName} = ${parseCities}`),
+          JSON.stringify(`export const ${treatStateName} = ${parseCities}`),
         ),
       );
-      return newState;
+      const fileState = fs.createReadStream(`${trimStateName}.ts`);
+      fileState.pipe(fs.createWriteStream('States.ts'));
     });
-    length -= 1;
-    const stateName = UF[uf].replaceAll(' ', '');
-    const fileState = fs.createReadStream(`${stateName}.ts`);
-    fileState.pipe(fs.createWriteStream('States.ts'));
-  }
+    return newState;
+  });
 }
