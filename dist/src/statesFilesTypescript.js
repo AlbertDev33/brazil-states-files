@@ -7,6 +7,7 @@ exports.statesFilesTypescript = void 0;
 const axios_1 = __importDefault(require("axios"));
 const fs_1 = require("fs");
 const constants_1 = require("./constants/constants");
+const STATE_NAME = 'microrregiao.mesorregiao.UF.nome';
 const fetchStates = async (url) => {
     const { data } = await axios_1.default.get(url);
     return data;
@@ -21,7 +22,7 @@ async function statesFilesTypescript() {
         data.reduce((statesAcc, ibgeData) => {
             let acc = {};
             acc = statesAcc;
-            const stateName = ibgeData.microrregiao.mesorregiao.UF.nome;
+            const stateName = ibgeData[STATE_NAME];
             const state = acc[stateName] || [];
             const city = { city: ibgeData.nome };
             state.push(city);

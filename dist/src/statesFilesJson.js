@@ -7,6 +7,7 @@ exports.statesFilesJson = void 0;
 const axios_1 = __importDefault(require("axios"));
 const fs_1 = require("fs");
 const constants_1 = require("./constants/constants");
+const STATE_NAME = 'microrregiao.mesorregiao.UF.nome';
 const fetchStates = async (url) => {
     const { data } = await axios_1.default.get(url);
     return data;
@@ -26,7 +27,7 @@ async function statesFilesJson() {
         let acc = {};
         acc = statesAcc;
         ibgeData.forEach(region => {
-            const stateName = region.microrregiao.mesorregiao.UF.nome;
+            const stateName = region[STATE_NAME];
             const state = acc[stateName] || [];
             const city = { city: region.nome };
             state.push(city);
