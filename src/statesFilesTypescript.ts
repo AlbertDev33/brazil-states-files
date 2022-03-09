@@ -3,8 +3,6 @@ import { createWriteStream } from 'fs';
 import { IBGE_URL, UF } from './constants/constants';
 import { ICityShape, ICityName, IStatesShape } from './interfaces/IStates';
 
-const STATE_NAME = 'microrregiao.mesorregiao.UF.nome';
-
 const fetchStates = async (url: string) => {
   const { data } = await axios.get<IStatesShape[]>(url);
   return data;
@@ -22,7 +20,7 @@ export async function statesFilesTypescript() {
     data.reduce((statesAcc, ibgeData) => {
       let acc = {} as ICityName;
       acc = statesAcc;
-      const stateName = ibgeData[STATE_NAME];
+      const stateName = ibgeData.microrregiao.mesorregiao.UF.nome;
       const state = acc[stateName] || [];
       const city: ICityShape = { city: ibgeData.nome };
       state.push(city);

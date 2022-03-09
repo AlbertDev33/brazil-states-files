@@ -28,7 +28,7 @@ export async function statesFilesJson(): Promise<void> {
     let acc: ICityName = {};
     acc = statesAcc;
     ibgeData.forEach(region => {
-      const stateName = region[STATE_NAME];
+      const stateName = region.microrregiao.mesorregiao.UF.nome;
       const state = acc[stateName] || [];
       const city: ICityShape = { city: region.nome };
 

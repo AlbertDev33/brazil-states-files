@@ -3,8 +3,6 @@ import { createWriteStream } from 'fs';
 import { IBGE_URL, UF } from './constants/constants';
 import { ICityShape, ICityName, IAxiosShape } from './interfaces/IStates';
 
-const STATE_NAME = 'microrregiao.mesorregiao.UF.nome';
-
 const fetchStates = async (url: string): Promise<IAxiosShape[]> => {
   const { data } = await axios.get<IAxiosShape[]>(url);
   return data;
@@ -28,7 +26,7 @@ export async function uniqueStateFile(): Promise<void> {
     let acc: ICityName = {};
     acc = statesAcc;
     ibgeData.forEach(region => {
-      const stateName = region[STATE_NAME];
+      const stateName = region.microrregiao.mesorregiao.UF.nome;
       const state = acc[stateName] || [];
       const city: ICityShape = { city: region.nome };
 
@@ -45,3 +43,7 @@ export async function uniqueStateFile(): Promise<void> {
     file.end();
   });
 }
+
+uniqueStateFile()
+  .then(() => console.log('Done'))
+  .catch(err => console.log(err));
