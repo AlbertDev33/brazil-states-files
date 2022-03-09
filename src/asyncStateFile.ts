@@ -10,7 +10,7 @@ const fetchStates = async (url: string): Promise<IAxiosShape[]> => {
   const { data } = await axios.get<IAxiosShape[]>(url);
   return data;
 };
-export async function asyncStateFiles() {
+export async function asyncStateFiles(extension?: 'js' | 'ts') {
   const promise = [];
   let length = Object.keys(UF).length - 1;
   const keys = Object.keys(UF);
@@ -42,14 +42,15 @@ export async function asyncStateFiles() {
         .normalize('NFD')
         .replace(/[\u0300-\u036f]/g, '');
 
+      const fileExtension =
+        `${trimStateName}.${extension}` || `${trimStateName}.ts`;
+
       await writeFile(
-        `${trimStateName}.ts`,
+        `${fileExtension}`,
         JSON.parse(
           JSON.stringify(`export const ${treatStateName} = ${parseCities}`),
         ),
       );
-      const fileState = fs.createReadStream(`${trimStateName}.ts`);
-      fileState.pipe(fs.createWriteStream('States.ts'));
     });
     return newState;
   });
