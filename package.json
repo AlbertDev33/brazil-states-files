@@ -1,16 +1,38 @@
 {
   "name": "brazil-states-files",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "1.0.2",
+  "description": "Generate brazil states and cities files",
+  "main": "dist/index.js",
   "license": "MIT",
+  "repository": {
+    "type": "ssh",
+    "url": "git@github.com:AlbertDev33/brazil-states-files.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "files",
+    "Brasil",
+    "Brazil",
+    "brasil",
+    "brazil",
+    "states"
+  ],
+  "author": {
+    "name": "Albert Rocha"
+  },
+
+  "files": [
+    "dist/",
+    "LICENSE",
+    "package.json"
+  ],
   "scripts": {
     "build": "rm -rf ./dist/* && tsc",
     "main": "dist/index.js",
     "types": "dist/@types/IStates.d.ts"
   },
-  "files": [
-    "dist"
-  ],
   "dependencies": {
     "axios": "^0.26.0"
   },
@@ -29,5 +51,6 @@
     "prettier": "^2.5.1",
     "ts-node": "^10.6.0",
     "typescript": "^4.6.2"
-  }
+  },
+  "private": false
 }
