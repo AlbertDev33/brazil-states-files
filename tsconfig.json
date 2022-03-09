@@ -10,17 +10,14 @@
     "sourceMap": true,
     "target": "ES2020",
     "module": "CommonJS",
-    "rootDir": ".",
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "outDir": "dist",
+    "outDir": "./dist",
     "allowJs": true,
     "declaration": true
   },
   "include": [
-    "src/**/*.ts",
-    "package.json",
-    "index.ts"
+    "src"
   ],
   "exclude": [
     "node_modules/**/*",
