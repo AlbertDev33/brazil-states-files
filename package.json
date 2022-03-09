@@ -4,9 +4,13 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
-    "main": "dist/src/index.js"
+    "build": "rm -rf ./dist/* && tsc",
+    "main": "dist/index.js",
+    "types": "dist/@types/IStates.d.ts"
   },
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "axios": "^0.26.0"
   },
