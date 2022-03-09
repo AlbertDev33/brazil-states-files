@@ -43,7 +43,3 @@ export async function uniqueStateFile(): Promise<void> {
     file.end();
   });
 }
-
-uniqueStateFile()
-  .then(() => console.log('Done'))
-  .catch(err => console.log(err));
