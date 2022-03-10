@@ -13,7 +13,7 @@ const fetchStates = async (url) => {
     const { data } = await axios_1.default.get(url);
     return data;
 };
-async function asyncStateFiles() {
+async function asyncStateFiles(extension) {
     const promise = [];
     let length = Object.keys(constants_1.UF).length - 1;
     const keys = Object.keys(constants_1.UF);
@@ -41,9 +41,8 @@ async function asyncStateFiles() {
                 .replaceAll(' ', '')
                 .normalize('NFD')
                 .replace(/[\u0300-\u036f]/g, '');
-            await writeFile(`${trimStateName}.ts`, JSON.parse(JSON.stringify(`export const ${treatStateName} = ${parseCities}`)));
-            const fileState = fs_1.default.createReadStream(`${trimStateName}.ts`);
-            fileState.pipe(fs_1.default.createWriteStream('States.ts'));
+            const fileExtension = `${trimStateName}.${extension}` || `${trimStateName}.ts`;
+            await writeFile(`${fileExtension}`, JSON.parse(JSON.stringify(`export const ${treatStateName} = ${parseCities}`)));
         });
         return newState;
     });
